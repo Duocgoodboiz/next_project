@@ -6,7 +6,7 @@ import { FaGoogle, FaFacebook } from "react-icons/fa";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { TextInput } from "@/components/common/TextInput";
 import { useAuth } from "@/hooks/auth/useAuth";
-import { text } from "@/config";
+import { text } from "@/config/text";
 import { LoginPayload } from "@/lib/types/login";
 import Link from "next/link";
 import styles from "./LoginForm.module.css";

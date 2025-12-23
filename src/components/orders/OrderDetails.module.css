@@ -2,7 +2,7 @@
   max-width: 1120px;
   width: 100%;
   margin: 0;
-  color: #111827;
+  color: var(--cart-item);
   padding-right: 32px;
 }
 
@@ -25,24 +25,24 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid #e5e7eb;
-  background: white;
-  color: #374151;
+  border: 1px solid var(--erp-border);
+  background: var(--background);
+  color: var(--erp-item-sidebar);
   transition: all 0.2s;
   cursor: pointer;
 }
 .backButton:hover {
-  background-color: #f3f4f6;
+  background-color: var(--item-hover);
 }
 .pageTitle {
   font-size: 24px;
   font-weight: 700;
-  color: #111827;
+  color: var(--cart-item);
   margin: 0;
   line-height: 1.2;
 }
 .orderLabel {
-  color: #6b7280;
+  color: var(--erp-text-sub);
   font-size: 14px;
   margin-top: 4px;
 }
@@ -62,8 +62,8 @@
 
 /* === CARD STYLE === */
 .card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--background);
+  border: 1px solid var(--erp-border);
   border-radius: 16px;
   padding: 24px;
   margin: 0px 0px 24px;
@@ -72,7 +72,7 @@
 .cardTitle {
   font-size: 18px;
   font-weight: 700;
-  color: #111827;
+  color: var(--cart-item);
   margin-bottom: 24px;
 }
 
@@ -90,8 +90,8 @@
   font-weight: 600;
 }
 .badgeProcessing {
-  background: #eff6ff;
-  color: #2563eb;
+  background: var(--bg-badge);
+  color: var(--cl-badge);
 }
 
 .timelineItem {
@@ -108,7 +108,7 @@
   top: 32px;
   bottom: -10px;
   width: 2px;
-  background: #e5e7eb;
+  background: var(--erp-border);
 }
 .timelineItem:last-child .timelineLine {
   display: none;
@@ -125,15 +125,15 @@
   justify-content: center;
   z-index: 1;
   font-size: 16px;
-  background-color: white;
-  border: 2px solid #e5e7eb;
-  color: #9ca3af;
+  background-color: var(--background);
+  border: 2px solid var(--erp-border);
+  color: var(--erp-text-placeholder);
 }
 .iconCompleted,
 .iconCurrent {
-  background-color: #0d724f;
-  border-color: #0d724f;
-  color: white;
+  background-color: var(--erp-primary);
+  border-color: var(--erp-primary);
+  color: var(--background);
 }
 .iconCurrent {
   box-shadow: 0 0 0 4px #d1fae5;
@@ -141,18 +141,18 @@
 .timelineStatus {
   font-size: 15px;
   font-weight: 600;
-  color: #111827;
+  color: var(--cart-item);
 }
 .timelineDate {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--erp-text-sub);
   margin-top: 4px;
 }
 
 /* === TRACKING FOOTER === */
 .trackingFooter {
   margin-top: 32px;
-  background-color: #f9fafb;
+  background-color: var(--erp-bg-body);
   border-radius: 12px;
   padding: 16px 24px;
   display: flex;
@@ -161,13 +161,13 @@
 }
 .trackingLabel {
   font-size: 12px;
-  color: #6b7280;
+  color: var(--erp-text-sub);
   display: block;
 }
 .trackingValue {
   font-size: 15px;
   font-weight: 700;
-  color: #111827;
+  color: var(--cart-item);
   font-family: monospace;
 }
 
@@ -180,23 +180,23 @@
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: #6b7280;
+  color: var(--erp-text-sub);
   margin-bottom: 6px;
 }
 .infoValue {
   font-size: 15px;
   font-weight: 600;
-  color: #111827;
+  color: var(--cart-item);
   padding-left: 28px;
 }
 .addressName {
   font-weight: 700;
-  color: #111827;
+  color: var(--cart-item);
   margin-bottom: 4px;
   font-size: 15px;
 }
 .addressText {
-  color: #6b7280;
+  color: var(--erp-text-sub);
   line-height: 1.6;
   font-size: 14px;
 }
@@ -209,7 +209,7 @@
 }
 .visaBadge {
   background: #1e40af;
-  color: white;
+  color: var(--background);
   font-size: 10px;
   font-weight: 800;
   padding: 2px 6px;
@@ -218,9 +218,303 @@
 .paymentTextMain {
   font-size: 14px;
   font-weight: 500;
-  color: #111827;
+  color: var(--cart-item);
 }
 .paymentTextSub {
   font-size: 12px;
-  color: #6b7280;
+  color: var(--erp-text-sub);
+}
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.itemRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.itemRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.itemGroupLeft {
+  display: flex;
+  gap: 16px;
+}
+
+.itemImageWrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+
+  border: 1px solid var(--erp-border);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.itemName {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  color: var(--erp-text-main);
+  margin: 0 0 4px 0;
+  line-height: 24px;
+}
+
+.itemMeta {
+  font-size: 14px;
+  color: var(--erp-text-sub);
+  line-height: 20px;
+}
+.itemPriceGroup {
+  text-align: right;
+}
+
+.itemTotal {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-main);
+  line-height: 24px;
+}
+
+.itemUnitPrice {
+  display: block;
+  font-size: 14px;
+  color: var(--erp-text-sub);
+  margin-top: 4px;
+}
+
+/* === SUMMARY SECTION === */
+.summarySection {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--item-hover);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.summaryLabel {
+  color: var(--erp-text-sub);
+}
+
+.summaryValue {
+  font-weight: 600;
+
+  color: var(--erp-text-main);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 16px;
+
+  border-top: 1px solid var(--item-hover);
+}
+
+.totalLabel {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--erp-text-main);
+}
+
+.totalValue {
+  font-size: 20px;
+  font-weight: 700;
+
+  color: var(--erp-text-main);
+}
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.itemRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.itemRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.itemGroupLeft {
+  display: flex;
+  gap: 16px;
+}
+
+.itemImageWrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  border: 1px solid var(--erp-border);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #f9fafb;
+}
+
+.itemName {
+  font-family: SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-main);
+  margin: 0 0 4px 0;
+  line-height: 24px;
+}
+
+.itemMeta {
+  font-size: 14px;
+  color: var(--erp-text-sub);
+  line-height: 20px;
+}
+
+.itemPriceGroup {
+  text-align: right;
+}
+
+.itemTotal {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-main);
+  line-height: 24px;
+}
+
+.itemUnitPrice {
+  display: block;
+  font-size: 14px;
+  color: var(--erp-text-sub);
+  margin-top: 2px;
+  line-height: 20px;
+}
+
+/* === SUMMARY SECTION === */
+
+.summarySection {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--erp-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.summaryLabel {
+  color: var(--erp-text-sub);
+}
+
+.summaryValue {
+  font-weight: 600;
+  color: var(--erp-text-main);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.totalLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-main);
+}
+
+.totalValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--erp-text-main);
+}
+.helpCard {
+  background: var(--erp-bg-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.helpFlex {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.helpIconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  /* Sử dụng biến màu nền icon xanh nhạt có sẵn trong global */
+  background-color: var(--stat-icon);
+
+  /* Sử dụng màu xanh chính của ERP */
+  color: var(--erp-primary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.helpContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.helpTitle {
+  font-family: SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-main);
+  margin: 0 0 4px 0;
+}
+
+.helpText {
+  font-size: 14px;
+  color: var(--erp-text-sub);
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+
+.contactBtnWrapper {
+  display: flex;
 }

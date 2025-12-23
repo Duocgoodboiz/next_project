@@ -1,7 +1,7 @@
-// src/app/dashboard/orders/page.tsx
 "use client";
 import React from "react";
-import { HiOutlineEye } from "react-icons/hi";
+
+import { Eye, Calendar } from "lucide-react";
 import { text } from "@/config/text";
 import { MOCK_ORDERS } from "@/lib/api-client/mock/orders/orders-data";
 import { OrderStatus } from "@/lib/types/order";
@@ -52,21 +52,12 @@ export default function OrdersPage() {
             fontSize: "30px",
             fontWeight: "700",
             color: "#111827",
-            lineHeight: "36px",
             marginBottom: "8px",
           }}
         >
           {t.title}
         </h1>
-        <p
-          style={{
-            fontSize: "16px",
-            color: "#6b7280",
-            lineHeight: "24px",
-          }}
-        >
-          {t.subtitle}
-        </p>
+        <p style={{ fontSize: "16px", color: "#6b7280" }}>{t.subtitle}</p>
       </div>
 
       <TabsFilter
@@ -80,37 +71,51 @@ export default function OrdersPage() {
 
         {filteredOrders.map((item) => (
           <div key={item.id} className={styles.orderRow}>
-            <div className={styles.cardHeader}>
-              <span className={styles.orderId}>{item.id}</span>
-              <span
-                className={`${styles.statusBadge} ${getStatusClass(
-                  item.status
-                )}`}
-              >
-                {item.status}
-              </span>
-            </div>
+            {/* Cột bên trái: Thông tin đơn hàng */}
+            <div className={styles.leftColumn}>
+              {/* Dòng 1: Order ID + Badge */}
+              <div className={styles.rowTop}>
+                <span className={styles.orderId}>{item.id}</span>
+                <span
+                  className={`${styles.statusBadge} ${getStatusClass(
+                    item.status
+                  )}`}
+                >
+                  {item.status}
+                </span>
+              </div>
 
-            <div className={styles.infoRow}>
-              <span>{item.date}</span>
-              <span className="w-1 h-1 bg-gray-300 rounded-full mx-2"></span>
-              <span className={styles.itemName}>
-                {item.itemsName}
-                {item.totalItems > 1 && (
-                  <span className="text-gray-400 font-normal ml-1">
-                    + {item.totalItems - 1} more
+              {/* Dòng 2: Ngày tháng + Tên sản phẩm */}
+              <div className={styles.rowMeta}>
+                <div className="flex items-center gap-1.5">
+                  <Calendar size={14} className="text-gray-500" />
+                  <span>{item.date}</span>
+                </div>
+
+                <span className={styles.dot}>•</span>
+
+                <div className="flex items-center gap-1.5 truncate">
+                  <span className={styles.itemName} title={item.itemsName}>
+                    {item.itemsName}
+                    {item.totalItems > 1 && (
+                      <span className="text-gray-400 font-normal ml-1">
+                        + {item.totalItems - 1} more
+                      </span>
+                    )}
                   </span>
-                )}
-              </span>
+                </div>
+              </div>
+
+              {/* Dòng 3: Giá tiền */}
+              <div className={styles.price}>${item.price}</div>
             </div>
 
-            <div className={styles.footer}>
-              <span className={styles.price}>${item.price}</span>
+            <div className={styles.rightColumn}>
               <Link
                 href={`/dashboard/orders/${item.id}`}
                 className={styles.viewBtn}
               >
-                <HiOutlineEye size={16} />
+                <Eye size={16} />
                 {t.card.view_details}
               </Link>
             </div>
@@ -118,7 +123,9 @@ export default function OrdersPage() {
         ))}
 
         {filteredOrders.length === 0 && (
-          <div className="text-center text-gray-500 py-8">No orders found.</div>
+          <div className="text-center text-gray-500 py-12">
+            No orders found.
+          </div>
         )}
       </div>
     </div>

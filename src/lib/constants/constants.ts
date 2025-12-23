@@ -22,4 +22,5 @@ export const ROUTES = {
   WISHLIST: "/dashboard/wishlist",
   TICKETS: "/dashboard/tickets",
   PROFILE: "/dashboard/profile",
+  AFFILIATE: "/dashboard/affiliate",
 };

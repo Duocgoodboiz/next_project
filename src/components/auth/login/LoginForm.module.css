@@ -105,7 +105,7 @@
 
 .socialBtn {
   height: 44px;
-  background-color: white;
+  background-color: var(--background);
   border: 1px solid var(--erp-border);
   border-radius: 12px;
   display: flex;

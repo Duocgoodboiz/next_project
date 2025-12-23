@@ -8,6 +8,7 @@ type ButtonShape = "rounded" | "pill";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   shape?: ButtonShape;
+  size?: "sm" | "md" | "lg";
   isLoading?: boolean;
   icon?: React.ReactNode;
 }

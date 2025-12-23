@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { UserRole, UserStatus } from "@/lib/constants";
+import { UserRole, UserStatus } from "@/lib/constants/constants";
 
 export async function POST(request: Request) {
   const body = await request.json();

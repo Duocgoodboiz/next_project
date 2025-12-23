@@ -19,12 +19,12 @@
 
 .active {
   background-color: var(--erp-primary);
-  color: var(--backgoround);
+  color: var(--erp-bg-surface);
   box-shadow: #0000 0px 0px 0px 0px;
 }
 
 .inactive {
-  background-color: var(--backgoround);
+  background-color: var(--erp-bg-surface);
   color: var(--erp-text-main);
   border: 1px solid transparent;
 }

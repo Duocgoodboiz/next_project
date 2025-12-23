@@ -10,7 +10,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 import { TextInput } from "@/components/common/TextInput";
 import { Button } from "@/components/common/Button";
-import { text } from "@/config";
+import { text } from "@/config/text";
 import styles from "./RegisterForm.module.css";
 
 export const RegisterForm = () => {
