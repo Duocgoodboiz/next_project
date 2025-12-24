@@ -1,4 +1,4 @@
-import { DailyPerformance } from "@/lib/types/affiliate/affiliate-detail";
+import { DailyPerformance } from "@/lib/types";
 
 export default function PerformanceChart({
   data,

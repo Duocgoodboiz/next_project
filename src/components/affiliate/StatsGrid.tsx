@@ -1,4 +1,4 @@
-import { AffiliateStat } from "@/lib/types/affiliate/affiliate";
+import { AffiliateStat } from "@/lib/types";
 
 export default function StatsGrid({ stats }: { stats: AffiliateStat[] }) {
   return (

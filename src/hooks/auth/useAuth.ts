@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { authApi } from "@/lib/api-client/auth-api";
+import { authApi } from "@/lib/data/auth-api";
 import { LoginPayload } from "@/lib/types/login";
 
 export const useAuth = () => {

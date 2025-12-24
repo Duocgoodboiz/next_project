@@ -1,7 +1,4 @@
-import {
-  MarketingBanner,
-  MarketingResource,
-} from "@/lib/types/affiliate/affiliate-marketing";
+import { MarketingBanner, MarketingResource } from "@/lib/types";
 
 export const MARKETING_BANNERS: MarketingBanner[] = [
   {

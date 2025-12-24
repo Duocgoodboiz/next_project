@@ -2,7 +2,7 @@
 
 import React from "react";
 import ProfileForm from "@/components/profile/ProfileForm";
-import { MOCK_USER_PROFILE } from "@/lib/api-client/mock/profile/user";
+import { MOCK_USER_PROFILE } from "@/lib/data/mock/profile/user";
 import { User } from "lucide-react";
 import { useProfile } from "@/hooks/useProfile";
 

@@ -1,7 +1,7 @@
 // src/hooks/useAddresses.ts
 import { useState, useEffect } from "react";
 import { Address } from "@/lib/types/address";
-import { getAddresses } from "@/lib/api-client/mock/addresses/addresses-data";
+import { getAddresses } from "@/lib/data/mock/addresses/addresses-data";
 
 export const useAddresses = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);

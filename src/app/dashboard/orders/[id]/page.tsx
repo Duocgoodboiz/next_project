@@ -1,7 +1,6 @@
-// src/app/dashboard/orders/[id]/page.tsx
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -15,11 +14,12 @@ import {
 } from "react-icons/hi";
 import { BiPackage } from "react-icons/bi";
 
-// Import Config & Data
-import { getOrderDetail } from "@/lib/api-client/mock/orders/order-detail-data";
+// API & Types
+import { ordersApi } from "@/lib/api-client/orders-api";
+import { OrderDetail } from "@/lib/types/order";
 import { ordersText } from "@/config/text/orders";
 
-// Import Style & Component
+// Styles & Components
 import styles from "@/components/orders/OrderDetails.module.css";
 import { Button } from "@/components/common/Button";
 
@@ -27,7 +27,29 @@ export default function OrderDetailsPage() {
   const params = useParams();
   const router = useRouter();
   const orderId = params.id as string;
-  const order = getOrderDetail(orderId);
+
+  // State
+  const [order, setOrder] = useState<OrderDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch Data
+  useEffect(() => {
+    const fetchDetail = async () => {
+      try {
+        setLoading(true);
+        const data = await ordersApi.getOrderDetail(orderId);
+        setOrder(data);
+      } catch (error) {
+        console.error("Error fetching order detail:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (orderId) {
+      fetchDetail();
+    }
+  }, [orderId]);
 
   const getTimelineIcon = (status: string) => {
     if (status.includes("Placed")) return <HiOutlineCube size={18} />;
@@ -36,6 +58,7 @@ export default function OrderDetailsPage() {
     return <HiCheck size={18} />;
   };
 
+  if (loading) return <div className="p-8 text-center">Loading details...</div>;
   if (!order) return <div className="p-8 text-center">Order not found</div>;
 
   return (

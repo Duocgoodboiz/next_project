@@ -1,8 +1,8 @@
 // src/hooks/useTicketDetail.ts
 import { useState, useEffect } from "react";
 import { Ticket, TicketMessage } from "@/lib/types/ticket";
-import { MOCK_TICKETS } from "@/lib/api-client/mock/tickets/tickets-data";
-import { MOCK_TICKET_MESSAGES } from "@/lib/api-client/mock/tickets/ticket-detail-data";
+import { MOCK_TICKETS } from "@/lib/data/mock/tickets/tickets-data";
+import { MOCK_TICKET_MESSAGES } from "@/lib/data/mock/tickets/ticket-detail-data";
 
 export const useTicketDetail = (ticketId: string) => {
   const [ticket, setTicket] = useState<Ticket | null>(null);

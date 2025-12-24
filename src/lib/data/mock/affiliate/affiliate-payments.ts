@@ -1,4 +1,4 @@
-import { PaymentRecord } from "@/lib/types/affiliate/affiliate-payment";
+import { PaymentRecord } from "@/lib/types";
 export const PAYMENT_HISTORY: PaymentRecord[] = [
   {
     id: "PAY-001",

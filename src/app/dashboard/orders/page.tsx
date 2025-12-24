@@ -1,19 +1,42 @@
 "use client";
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { Eye, Calendar } from "lucide-react";
+import Link from "next/link";
+
+// Config & Types
 import { text } from "@/config/text";
-import { MOCK_ORDERS } from "@/lib/api-client/mock/orders/orders-data";
-import { OrderStatus } from "@/lib/types/order";
+import { Order, OrderStatus } from "@/lib/types/order";
+
+// API & Hooks
+import { ordersApi } from "@/lib/api-client/orders-api"; // Import API client mới
+import { useOrders } from "@/hooks/useOrders";
+
+// Components & Styles
 import styles from "@/components/orders/OrderList.module.css";
 import { TabsFilter } from "@/components/common/TabsFilter";
-import { useOrders } from "@/hooks/useOrders";
-import Link from "next/link";
 
 export default function OrdersPage() {
   const t = text.orders;
-  const { activeTab, setActiveTab, filteredOrders, counts } =
-    useOrders(MOCK_ORDERS);
+
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { activeTab, setActiveTab, filteredOrders, counts } = useOrders(orders);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        setLoading(true);
+        const data = await ordersApi.getOrders();
+        setOrders(data);
+      } catch (error) {
+        console.error("Failed to load orders", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
 
   const tabData = [
     { id: "All", label: `${t.tabs.all} (${counts.all})` },
@@ -43,6 +66,10 @@ export default function OrdersPage() {
         return "";
     }
   };
+
+  if (loading) {
+    return <div className="p-8">Loading orders...</div>;
+  }
 
   return (
     <div className={styles.pageContainer}>

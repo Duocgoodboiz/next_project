@@ -1,4 +1,4 @@
-import { AffiliateBalance } from "@/lib/types/affiliate/affiliate";
+import { AffiliateBalance } from "@/lib/types";
 import { Button } from "@/components/common/Button";
 
 export default function BalanceSection({

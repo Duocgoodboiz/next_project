@@ -5,7 +5,7 @@ import {
   ReferralLinkItem,
   DetailedReferralLink,
   LinksPageStats,
-} from "@/lib/types/affiliate/affiliate";
+} from "@/lib/types";
 import { DollarSign, TrendingUp, Users, Target } from "lucide-react";
 
 // 1. Stats Data

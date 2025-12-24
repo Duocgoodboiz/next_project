@@ -1,4 +1,4 @@
-import { LinkDetailData } from "@/lib/types/affiliate/affiliate-detail";
+import { LinkDetailData } from "@/lib/types";
 
 export const MOCK_LINK_DETAIL: LinkDetailData = {
   id: 1,

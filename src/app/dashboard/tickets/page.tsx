@@ -4,7 +4,7 @@ import React from "react";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { useTickets } from "@/hooks/useTickets";
-import { MOCK_TICKETS } from "@/lib/api-client/mock/tickets/tickets-data";
+import { MOCK_TICKETS } from "@/lib/data/mock/tickets/tickets-data";
 import { TICKET_CATEGORIES } from "@/lib/constants/tickets";
 import { TICKET_TEXT } from "@/config/text/tickets";
 import { TicketFilterBar } from "@/components/tickets/TicketFilterBar";

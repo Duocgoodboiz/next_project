@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { WishlistItem } from "@/lib/types/wishlist";
-import { MOCK_WISHLIST } from "@/lib/api-client/mock/wishlist/wishlist-data";
+import { MOCK_WISHLIST } from "@/lib/data/mock/wishlist/wishlist-data";
 import { SORT_KEYS, ALL_CATEGORIES_KEY } from "@/config/text/wishlist";
 
 export const useWishlist = () => {

@@ -4,7 +4,7 @@ import { Button } from "@/components/common/Button";
 import {
   MARKETING_BANNERS,
   MARKETING_RESOURCES,
-} from "@/lib/api-client/mock/affiliate/affiliate-marketing";
+} from "@/lib/data/mock/affiliate/affiliate-marketing";
 
 export default function MarketingTab() {
   return (

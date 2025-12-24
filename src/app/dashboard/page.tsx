@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { FiBox, FiCheckCircle, FiGift } from "react-icons/fi";
 import { text } from "@/config/text";
-import { dashboardApi } from "@/lib/api-client//mock/dashboard/dashboard-api";
+import { dashboardApi } from "@/lib/api-client/dashboard-api";
 import { DashboardData } from "@/lib/types/dashboard";
 import {
   StatCard,
@@ -15,14 +15,17 @@ export default function DashboardPage() {
 
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await dashboardApi.getOverview();
         setData(response);
-      } catch (error) {
-        console.error("Error:", error);
+      } catch (err) {
+        console.error("Error in DashboardPage:", err);
+        setError("Failed to load dashboard data. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -30,7 +33,28 @@ export default function DashboardPage() {
     fetchData();
   }, []);
 
-  if (loading) return <div className="p-8">Loading dashboard...</div>;
+  if (loading) {
+    return (
+      <div className="p-8 flex justify-center items-center h-64">
+        <div className="text-lg text-gray-500">Loading dashboard...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-8 text-center text-red-500">
+        <p>{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
   if (!data) return null;
 
   return (

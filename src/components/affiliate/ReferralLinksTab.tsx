@@ -1,6 +1,6 @@
 import { Copy, Share2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/common/Button";
-import { ReferralLinkItem } from "@/lib/types/affiliate/affiliate";
+import { ReferralLinkItem } from "@/lib/types";
 import Link from "next/link";
 
 export default function ReferralLinksTab({

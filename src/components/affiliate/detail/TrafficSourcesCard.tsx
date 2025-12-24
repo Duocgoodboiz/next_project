@@ -1,6 +1,6 @@
 import { Share2 } from "lucide-react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
-import { TrafficSource } from "@/lib/types/affiliate/affiliate-detail";
+import { TrafficSource } from "@/lib/types";
 
 const getIcon = (source: string) => {
   switch (source) {

@@ -1,7 +1,7 @@
 import { Edit, PauseCircle, Trash2, Mail, Share2 } from "lucide-react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import { Button } from "@/components/common/Button";
-import { LinkDetailData } from "@/lib/types/affiliate/affiliate-detail";
+import { LinkDetailData } from "@/lib/types";
 
 export default function LinkSidebar({ data }: { data: LinkDetailData }) {
   return (

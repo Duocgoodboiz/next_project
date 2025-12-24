@@ -1,6 +1,6 @@
 import React from "react";
-import { PAYMENT_HISTORY } from "@/lib/api-client/mock/affiliate/affiliate-payments";
-import { PaymentRecord } from "@/lib/types/affiliate/affiliate-payment";
+import { PAYMENT_HISTORY } from "@/lib/data/mock/affiliate/affiliate-payments";
+import { PaymentRecord } from "@/lib/types";
 import { cn } from "@/lib/constants/utils";
 
 export default function PaymentsTab() {

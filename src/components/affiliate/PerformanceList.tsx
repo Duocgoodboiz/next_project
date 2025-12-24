@@ -1,4 +1,4 @@
-import { CampaignPerformance } from "@/lib/types/affiliate/affiliate";
+import { CampaignPerformance } from "@/lib/types";
 
 export default function PerformanceList({
   data,
