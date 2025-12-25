@@ -1,37 +1,39 @@
-// src/hooks/useTicketDetail.ts
 import { useState, useEffect } from "react";
 import { Ticket, TicketMessage } from "@/lib/types/ticket";
-import { MOCK_TICKETS } from "@/lib/data/mock/tickets/tickets-data";
-import { MOCK_TICKET_MESSAGES } from "@/lib/data/mock/tickets/ticket-detail-data";
+import { ticketsApi } from "@/lib/api-client/tickets-api";
 
 export const useTicketDetail = (ticketId: string) => {
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [messages, setMessages] = useState<TicketMessage[]>([]);
   const [newMessage, setNewMessage] = useState("");
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const foundTicket =
-        MOCK_TICKETS.find((t) => t.id === ticketId) || MOCK_TICKETS[0];
-      setTicket(foundTicket);
-      setMessages(MOCK_TICKET_MESSAGES);
+    const fetchDetail = async () => {
+      if (!ticketId) return;
 
-      setIsLoading(false);
-    }, 500);
+      try {
+        setIsLoading(true);
+        const data = await ticketsApi.getTicketDetail(ticketId);
 
-    return () => {
-      clearTimeout(timer);
-      setTicket(null);
-      setMessages([]);
-      setIsLoading(true);
+        if (data) {
+          setTicket(data.ticket);
+          setMessages(data.messages);
+        }
+      } catch (error) {
+        console.error("Error fetching ticket detail:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+
+    fetchDetail();
   }, [ticketId]);
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
 
+    // Simulate sending messages
     const newMsg: TicketMessage = {
       id: `msg-${Date.now()}`,
       senderId: "user-current",

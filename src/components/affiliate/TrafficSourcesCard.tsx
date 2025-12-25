@@ -1,17 +1,18 @@
+import React from "react";
 import { Share2 } from "lucide-react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
-import { TrafficSource } from "@/lib/types";
+import { TrafficSource } from "@/lib/types/affiliate";
 
 const getIcon = (source: string) => {
   switch (source) {
     case "Facebook":
-      return <FaFacebook className="w-4 h-4" />;
+      return <FaFacebook className="w-4 h-4 text-blue-600" />;
     case "Twitter":
-      return <FaTwitter className="w-4 h-4" />;
+      return <FaTwitter className="w-4 h-4 text-sky-500" />;
     case "Instagram":
-      return <FaInstagram className="w-4 h-4" />;
+      return <FaInstagram className="w-4 h-4 text-pink-600" />;
     default:
-      return <Share2 className="w-4 h-4" />;
+      return <Share2 className="w-4 h-4 text-gray-500" />;
   }
 };
 
@@ -27,7 +28,7 @@ export default function TrafficSourcesCard({
         {sources.map((item) => (
           <div
             key={item.source}
-            className="flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-100"
+            className="flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-gray-100 transition-colors"
           >
             <div className="flex items-center gap-3 text-gray-700 font-medium text-sm">
               {getIcon(item.source)} {item.source}

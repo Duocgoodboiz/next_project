@@ -1,7 +1,8 @@
+import React from "react";
 import { Edit, PauseCircle, Trash2, Mail, Share2 } from "lucide-react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import { Button } from "@/components/common/Button";
-import { LinkDetailData } from "@/lib/types";
+import { LinkDetailData } from "@/lib/types/affiliate";
 
 export default function LinkSidebar({ data }: { data: LinkDetailData }) {
   return (
@@ -30,7 +31,7 @@ export default function LinkSidebar({ data }: { data: LinkDetailData }) {
           </div>
           <div>
             <p className="text-xs text-gray-500 mb-1">Original URL</p>
-            <p className="text-emerald-600 truncate font-medium">
+            <p className="text-emerald-600 truncate font-medium select-all">
               {data.originalUrl}
             </p>
           </div>
@@ -43,19 +44,22 @@ export default function LinkSidebar({ data }: { data: LinkDetailData }) {
         <div className="space-y-3">
           <Button
             variant="outline"
-            className="w-full justify-start gap-3 rounded-xl h-10 border-gray-200"
+            shape="rounded"
+            className="w-full justify-start gap-3 rounded-xl h-10 border-gray-200 text-gray-700"
           >
             <Edit className="w-4 h-4 text-gray-500" /> Edit Link
           </Button>
           <Button
             variant="outline"
-            className="w-full justify-start gap-3 rounded-xl h-10 border-gray-200"
+            shape="rounded"
+            className="w-full justify-start gap-3 rounded-xl h-10 border-gray-200 text-gray-700"
           >
             <PauseCircle className="w-4 h-4 text-gray-500" /> Pause Link
           </Button>
           <Button
             variant="outline"
-            className="w-full justify-start gap-3 rounded-xl h-10 border-red-100 text-red-600 hover:bg-red-50 hover:text-red-700"
+            shape="rounded"
+            className="w-full justify-start gap-3 rounded-xl h-10 border-red-100 text-red-600 hover:bg-red-50 hover:text-red-700 hover:border-red-200"
           >
             <Trash2 className="w-4 h-4" /> Delete Link
           </Button>
@@ -74,16 +78,32 @@ export default function LinkSidebar({ data }: { data: LinkDetailData }) {
           Maximize your earnings by sharing this link on your social networks.
         </p>
         <div className="grid grid-cols-2 gap-3">
-          <Button className="bg-white text-blue-600 border border-blue-100 hover:bg-blue-50 h-9 text-xs">
+          <Button
+            className="bg-white text-blue-600 border border-blue-100 hover:bg-blue-50 h-9 text-xs justify-center"
+            shape="rounded"
+            variant="outline"
+          >
             <FaFacebook className="w-3.5 h-3.5 mr-2" /> Facebook
           </Button>
-          <Button className="bg-white text-sky-500 border border-sky-100 hover:bg-sky-50 h-9 text-xs">
+          <Button
+            className="bg-white text-sky-500 border border-sky-100 hover:bg-sky-50 h-9 text-xs justify-center"
+            shape="rounded"
+            variant="outline"
+          >
             <FaTwitter className="w-3.5 h-3.5 mr-2" /> Twitter
           </Button>
-          <Button className="bg-white text-pink-600 border border-pink-100 hover:bg-pink-50 h-9 text-xs">
+          <Button
+            className="bg-white text-pink-600 border border-pink-100 hover:bg-pink-50 h-9 text-xs justify-center"
+            shape="rounded"
+            variant="outline"
+          >
             <FaInstagram className="w-3.5 h-3.5 mr-2" /> Instagram
           </Button>
-          <Button className="bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 h-9 text-xs">
+          <Button
+            className="bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 h-9 text-xs justify-center"
+            shape="rounded"
+            variant="outline"
+          >
             <Mail className="w-3.5 h-3.5 mr-2" /> Email
           </Button>
         </div>

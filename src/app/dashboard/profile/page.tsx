@@ -1,15 +1,27 @@
 "use client";
 
 import React from "react";
-import ProfileForm from "@/components/profile/ProfileForm";
-import { MOCK_USER_PROFILE } from "@/lib/data/mock/profile/user";
 import { User } from "lucide-react";
+import ProfileForm from "@/components/profile/ProfileForm";
 import { useProfile } from "@/hooks/useProfile";
 
 export default function ProfilePage() {
-  // Gọi Hook để lấy logic
-  const { profile, isEditing, startEdit, cancelEdit, saveEdit, updateField } =
-    useProfile(MOCK_USER_PROFILE);
+  const {
+    profile,
+    isLoading,
+    isSaving,
+    isEditing,
+    startEdit,
+    cancelEdit,
+    saveEdit,
+    updateField,
+  } = useProfile();
+
+  if (isLoading) {
+    return (
+      <div className="p-12 text-center text-gray-500">Loading profile...</div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -39,6 +51,12 @@ export default function ProfilePage() {
           onCancel={cancelEdit}
           onChange={updateField}
         />
+
+        {isSaving && (
+          <div className="text-xs text-emerald-600 font-medium mt-2 animate-pulse">
+            Saving changes...
+          </div>
+        )}
       </div>
     </div>
   );

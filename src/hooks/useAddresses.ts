@@ -1,23 +1,30 @@
 // src/hooks/useAddresses.ts
 import { useState, useEffect } from "react";
 import { Address } from "@/lib/types/address";
-import { getAddresses } from "@/lib/data/mock/addresses/addresses-data";
+import { addressesApi } from "@/lib/api-client/addresses-api";
 
 export const useAddresses = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // State quản lý việc sửa
   const [editingId, setEditingId] = useState<string | number | null>(null);
 
-  // THÊM: State quản lý việc thêm mới
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
-    const loadData = () => {
-      setAddresses(getAddresses());
-      setIsLoading(false);
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+
+        const data = await addressesApi.getAddresses();
+        setAddresses(data);
+      } catch (error) {
+        console.error("Failed to load addresses", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+
     loadData();
   }, []);
 
@@ -33,7 +40,6 @@ export const useAddresses = () => {
     setEditingId(null);
   };
 
-  // Hàm tạo mới
   const handleCreate = (newAddr: Address) => {
     const newId = Math.random(); // Tạo ID giả lập
     const addressWithId = { ...newAddr, id: newId };

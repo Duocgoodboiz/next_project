@@ -1,3 +1,4 @@
+// src/app/dashboard/tickets/[id]/page.tsx
 "use client";
 
 import React from "react";
@@ -12,7 +13,6 @@ export default function TicketDetailPage() {
   const params = useParams();
   const ticketId = params.id as string;
 
-  // Lấy data và logic từ Hook
   const {
     ticket,
     messages,
@@ -22,7 +22,8 @@ export default function TicketDetailPage() {
     isLoading,
   } = useTicketDetail(ticketId);
 
-  if (isLoading || !ticket) {
+  // 1. CHỈ hiển thị Loading khi isLoading = true
+  if (isLoading) {
     return (
       <div className="w-full h-96 flex items-center justify-center">
         <div className="text-(--erp-text-sub) text-sm animate-pulse">
@@ -32,9 +33,18 @@ export default function TicketDetailPage() {
     );
   }
 
+  // 2. Nếu hết Loading mà vẫn không có ticket -> Hiển thị Not Found
+  if (!ticket) {
+    return (
+      <div className="w-full h-96 flex flex-col items-center justify-center text-gray-500">
+        <p className="text-lg font-semibold">Ticket not found</p>
+        <p className="text-sm">Could not load data for ID: {ticketId}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full mx-auto font-sans p-0">
-      {/* 1. Header Section */}
       <TicketHeader ticket={ticket} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

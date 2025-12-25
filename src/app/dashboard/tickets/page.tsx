@@ -4,7 +4,6 @@ import React from "react";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { useTickets } from "@/hooks/useTickets";
-import { MOCK_TICKETS } from "@/lib/data/mock/tickets/tickets-data";
 import { TICKET_CATEGORIES } from "@/lib/constants/tickets";
 import { TICKET_TEXT } from "@/config/text/tickets";
 import { TicketFilterBar } from "@/components/tickets/TicketFilterBar";
@@ -18,15 +17,22 @@ export default function TicketsPage() {
     setSearchQuery,
     filteredTickets,
     getCount,
-  } = useTickets(MOCK_TICKETS);
+    isLoading,
+  } = useTickets();
 
   const tabData = TICKET_CATEGORIES.map((cat) => ({
     id: cat,
     label: `${cat} (${getCount(cat)})`,
   }));
 
+  if (isLoading) {
+    return (
+      <div className="p-12 text-center text-gray-500">Loading tickets...</div>
+    );
+  }
+
   return (
-    <div className="w-full max-w-300  font-sans p-0">
+    <div className="w-full max-w-300 font-sans p-0">
       {/* 1. Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
@@ -40,7 +46,7 @@ export default function TicketsPage() {
         </Button>
       </div>
 
-      {/* 2. Filter Bar (Search + Tabs) */}
+      {/* 2. Filter Bar */}
       <TicketFilterBar
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}

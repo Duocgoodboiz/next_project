@@ -1,4 +1,5 @@
-import { DailyPerformance } from "@/lib/types";
+import React from "react";
+import { DailyPerformance } from "@/lib/types/affiliate";
 
 export default function PerformanceChart({
   data,
@@ -19,12 +20,14 @@ export default function PerformanceChart({
 
             {/* Thanh Progress Bars */}
             <div className="flex-1 space-y-1.5">
+              {/* Click Bar (Blue) */}
               <div className="h-2 bg-gray-100 rounded-full overflow-hidden w-full max-w-[70%]">
                 <div
                   className="h-full bg-blue-500 rounded-full"
                   style={{ width: `${item.clickPercentage}%` }}
                 ></div>
               </div>
+              {/* Conversion Bar (Green) */}
               <div className="h-2 bg-gray-100 rounded-full overflow-hidden w-full max-w-[50%]">
                 <div
                   className="h-full bg-emerald-500 rounded-full"

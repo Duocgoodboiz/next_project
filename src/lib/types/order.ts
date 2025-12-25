@@ -19,10 +19,10 @@ export interface Order {
 // --- CÁC TYPE MỚI CHO TRANG CHI TIẾT (DETAIL VIEW) ---
 
 export interface OrderTimeline {
-  status: string; // VD: "Order Placed", "Processing"
-  date: string; // VD: "2024-01-15, 10:30 AM"
-  isCompleted: boolean; // Đã xong bước này chưa
-  isCurrent: boolean; // Có phải bước hiện tại không
+  status: string;
+  date: string;
+  isCompleted: boolean;
+  isCurrent: boolean;
 }
 
 export interface OrderItemDetail {

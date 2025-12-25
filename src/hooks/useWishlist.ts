@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { WishlistItem } from "@/lib/types/wishlist";
-import { MOCK_WISHLIST } from "@/lib/data/mock/wishlist/wishlist-data";
+import { wishlistApi } from "@/lib/api-client/wishlist-api";
 import { SORT_KEYS, ALL_CATEGORIES_KEY } from "@/config/text/wishlist";
 
 export const useWishlist = () => {
@@ -14,10 +14,19 @@ export const useWishlist = () => {
 
   // 2. Fetch Data
   useEffect(() => {
-    const loadData = () => {
-      setItems(MOCK_WISHLIST);
-      setIsLoading(false);
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+
+        const data = await wishlistApi.getWishlist();
+        setItems(data);
+      } catch (error) {
+        console.error("Failed to load wishlist", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+
     loadData();
   }, []);
 
@@ -78,7 +87,7 @@ export const useWishlist = () => {
 
   return {
     // Data
-    items: processedItems, // Danh sách đã lọc/sắp xếp
+    items: processedItems,
     totalItems: processedItems.length,
     isLoading,
     categories: uniqueCategories,
