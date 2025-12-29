@@ -63,3 +63,18 @@ export interface OrderDetail {
   paymentMethod: PaymentInfo;
   timeline: OrderTimeline[];
 }
+export interface CreateOrderInput {
+  items: {
+    name: string;
+    image: string;
+    price: number;
+    quantity: number;
+  }[];
+  shippingAddress: AddressInfo;
+  billingAddress: AddressInfo;
+  paymentMethod: PaymentInfo;
+  subtotal: number;
+  shipping: number;
+  tax: number;
+  total: number;
+}
